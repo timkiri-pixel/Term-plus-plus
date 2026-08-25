@@ -1,0 +1,4 @@
+echo "main" >> .gitignore
+
+echo "*.out" >> .gitignore
+echo "*.exe" >> .gitignore

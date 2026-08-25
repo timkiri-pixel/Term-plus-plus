@@ -1,10 +1,21 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <filesystem>
+
+// give std::filesystem a nickname for easier access
+namespace fs = std::filesystem;
 
 // define the sayHello function for later use
 void sayHello(std::string& name) {
     std::cout << "Hello, " << name << "!" << std::endl;
+}
+
+// define the run_ls function for later use
+void run_ls() {
+    for (const auto& entry : fs::directory_iterator(".")) {
+        std::cout << entry.path().filename().string() << "\n";
+    }
 }
 
 int main() {
@@ -34,6 +45,7 @@ int main() {
             std::cout << "hello - get greeted with your desired name\n";
             std::cout << "exit - exit the terminal\n";
             std::cout << "clear - clear the terminal\n";
+            std::cout << "ls - list all of the available directories\n";
         } 
         else if (userInput == "version")
         {
@@ -57,6 +69,10 @@ int main() {
             #else
                 std::system("clear");
             #endif
+        }
+        else if (userInput == "ls")
+        {
+            run_ls();
         }
         else
         {
