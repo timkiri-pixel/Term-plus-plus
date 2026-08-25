@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 
+// define the sayHello function for later use
 void sayHello(std::string& name) {
     std::cout << "Hello, " << name << "!" << std::endl;
 }
@@ -11,18 +12,20 @@ int main() {
     // Optional welcoming
     std::cout << "Welcome to Term++ v0.0.1 :D\n";
 
+    // the main loop that runs the terminal
     while (true)
     {
-        // input string variable for storing input and starting the terminal's prompt
+        // declare the userInput variable for storing user's input; declare the name variable for storing the user's name
         std::string name;
         std::string userInput;
 
-        // if-statements block for logic
+        // the prompt
         std::cout << "++> ";
 
         // start reading input from userInput
         std::cin >> userInput;
 
+        // if-statement block
         if (userInput == "help")
         {
             std::cout << "-- Help Menu -- \n";
