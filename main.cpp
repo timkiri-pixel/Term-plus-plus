@@ -103,9 +103,14 @@ int main() {
         }
         else if (cmd == "hello")
         {
-            std::cout << "Enter name: ";
-            std::cin >> name;
-            sayHello(name);
+            if (arg.empty())
+            {
+                std::cout << "Usage: hello <name>\n";
+            }
+            else 
+            {
+                sayHello(arg);
+            }
         }
         else if (cmd == "exit")
         {
