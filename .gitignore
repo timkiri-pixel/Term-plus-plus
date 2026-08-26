@@ -1,4 +1,5 @@
-echo "main" >> .gitignore
+# Compiled binaries
+main
 
-echo "*.out" >> .gitignore
-echo "*.exe" >> .gitignore
+# Test directory
+test/
