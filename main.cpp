@@ -2,6 +2,8 @@
 #include <string>
 #include <cstdlib>
 #include <filesystem>
+#include <sstream>
+#include <fstream>
 
 // give std::filesystem a nickname for easier access
 namespace fs = std::filesystem;
@@ -18,10 +20,42 @@ void run_ls() {
     }
 }
 
+// mkdir function for later use
+void run_mkdir(const std::string& arg) {
+    try {
+        fs::create_directory(arg);
+    } catch (fs::filesystem_error& e) {
+        std::cout << "ERROR: dir already exists.\n";
+    }
+}
+
+// cd function for later use
+void run_cd(const std::string& arg) {
+    try {
+        fs::current_path(arg);
+    } catch (fs::filesystem_error& e) {
+        std::cout << "ERROR: nonexistent dir.\n";
+    }
+}
+
+// touch function for later use
+void run_touch(const std::string& arg) {
+    std::ofstream file(arg);
+
+    if (!file) {
+        std::cout << "Could not create file.\n";
+    }
+}
+
+// pwd function for later use
+std::string run_pwd() {
+    return fs::current_path();
+}
+
 int main() {
     
     // Optional welcoming
-    std::cout << "Welcome to Term++ v0.0.1 :D\n";
+    std::cout << "Welcome to Term++ v0.0.2 :D\n";
 
     // the main loop that runs the terminal
     while (true)
@@ -30,14 +64,26 @@ int main() {
         std::string name;
         std::string userInput;
 
+        // declare the folderName variable for storing the new folder's name
+        std::string folderName;
+
         // the prompt
-        std::cout << "++> ";
+        std::cout << run_pwd() << " ++> ";
 
         // start reading input from userInput
-        std::cin >> userInput;
+        std::getline(std::cin, userInput);
+
+        //iss implementation for cmd and arg reading
+        std::istringstream input(userInput);
+
+        std::string cmd;
+        std::string arg;
+
+        input >> cmd;
+        input >> arg;
 
         // if-statement block
-        if (userInput == "help")
+        if (cmd == "help")
         {
             std::cout << "-- Help Menu -- \n";
             std::cout << "version - display current build version of this project\n";
@@ -46,23 +92,27 @@ int main() {
             std::cout << "exit - exit the terminal\n";
             std::cout << "clear - clear the terminal\n";
             std::cout << "ls - list all of the available directories\n";
+            std::cout << "mkdir - make a directory\n";
+            std::cout << "pwd - print the current directory\n";
+            std::cout << "cd - change directory\n";
+            std::cout << "touch - make a file\n";
         } 
-        else if (userInput == "version")
+        else if (cmd == "version")
         {
-            std::cout << "v0.0.1 (self-learning hobby for C++ practice :D)\n";
+            std::cout << "v0.0.2\n";
         }
-        else if (userInput == "hello")
+        else if (cmd == "hello")
         {
             std::cout << "Enter name: ";
             std::cin >> name;
             sayHello(name);
         }
-        else if (userInput == "exit")
+        else if (cmd == "exit")
         {
             std::cout << "Exiting... (return 0)\n";
             return 0;
         }
-        else if (userInput == "clear")
+        else if (cmd == "clear")
         {
             #ifdef _WIN32
                 std::system("cls");
@@ -70,13 +120,29 @@ int main() {
                 std::system("clear");
             #endif
         }
-        else if (userInput == "ls")
+        else if (cmd == "ls")
         {
             run_ls();
         }
+        else if (cmd == "mkdir")
+        {
+            run_mkdir(arg);
+        }
+        else if (cmd == "pwd")
+        {
+            run_pwd();
+        }
+        else if (cmd == "cd")
+        {
+            run_cd(arg);
+        }
+        else if (cmd == "touch")
+        {
+            run_touch(arg);
+        }
         else
         {
-            std::cout << "Unknown command: " << userInput << std::endl;
+            std::cout << "Unknown command: " << cmd << std::endl;
         }
     }
 }
