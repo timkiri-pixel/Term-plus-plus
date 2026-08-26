@@ -3,3 +3,6 @@ main
 
 # Test directory
 test/
+
+# Text files
+test.txt 

@@ -47,6 +47,22 @@ void run_touch(const std::string& arg) {
     }
 }
 
+// cat function for later use
+void run_cat(const std::string& arg) {
+    std::ifstream file(arg);
+
+    if (!file) {
+        std::cout << "File not found\n";
+        return;
+    }
+
+    std::string line;
+
+    while(std::getline(file, line)) {
+        std::cout << line << "\n";
+    }
+}
+
 // pwd function for later use
 std::string run_pwd() {
     return fs::current_path();
@@ -96,6 +112,7 @@ int main() {
             std::cout << "pwd - print the current directory\n";
             std::cout << "cd - change directory\n";
             std::cout << "touch - make a file\n";
+            std::cout << "cat - output the inside of a file\n";
         } 
         else if (cmd == "version")
         {
@@ -144,6 +161,10 @@ int main() {
         else if (cmd == "touch")
         {
             run_touch(arg);
+        }
+        else if (cmd == "cat")
+        {
+            run_cat(arg);
         }
         else
         {
