@@ -109,7 +109,7 @@ int main() {
             std::cout << "hello - get greeted with your desired name\n";
             std::cout << "exit - exit the terminal\n";
             std::cout << "clear - clear the terminal\n";
-            std::cout << "ls - list all of the available directories\n";
+            std::cout << "ls - list all of the available directories and the content of them\n";
             std::cout << "mkdir - make a directory\n";
             std::cout << "pwd - print the current directory\n";
             std::cout << "cd - change directory\n";
