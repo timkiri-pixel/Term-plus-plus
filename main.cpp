@@ -14,8 +14,8 @@ void sayHello(std::string& name) {
 }
 
 // define the run_ls function for later use
-void run_ls() {
-    for (const auto& entry : fs::directory_iterator(".")) {
+void run_ls(const std::string& path = ".") {
+    for (const auto& entry : fs::directory_iterator(path)) {
         std::cout << entry.path().filename().string() << "\n";
     }
 }
@@ -83,6 +83,8 @@ int main() {
         // declare the folderName variable for storing the new folder's name
         std::string folderName;
 
+        std::string path;
+
         // the prompt
         std::cout << run_pwd() << " ++> ";
 
@@ -144,7 +146,14 @@ int main() {
         }
         else if (cmd == "ls")
         {
-            run_ls();
+            if (arg.empty())
+            {
+                run_ls(".");
+            }
+            else
+            {
+                run_ls(arg);
+            }
         }
         else if (cmd == "mkdir")
         {
