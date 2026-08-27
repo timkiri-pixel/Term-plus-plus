@@ -63,6 +63,21 @@ void run_cat(const std::string& arg) {
     }
 }
 
+void run_catAppend(const std::string& arg) {
+    std::ofstream file(arg, std::ios::app);
+
+    std::string line;
+
+    while (std::getline(std::cin, line)) {
+        file << line << '\n';
+    }
+
+    std::cin.clear();
+    //diagnosing
+    std::cout << "APPEND FINISHED\n";
+    std::cout << "relaunch needed (please)\n";
+}
+
 // pwd function for later use
 std::string run_pwd() {
     return fs::current_path();
@@ -89,16 +104,25 @@ int main() {
         std::cout << run_pwd() << " ++> ";
 
         // start reading input from userInput
-        std::getline(std::cin, userInput);
+        if (!std::getline(std::cin, userInput)) {
+            break;
+        }
 
         //iss implementation for cmd and arg reading
         std::istringstream input(userInput);
 
         std::string cmd;
+        std::string op;
         std::string arg;
 
         input >> cmd;
+        input >> op;
         input >> arg;
+
+        if (arg.empty()) {
+            arg = op;
+            op.clear();
+        }
 
         // if-statement block
         if (cmd == "help")
@@ -173,7 +197,18 @@ int main() {
         }
         else if (cmd == "cat")
         {
-            run_cat(arg);
+            if (op.empty())
+            {
+                run_cat(arg);
+            }
+            else if (op == ">>")
+            {
+                run_catAppend(arg);
+            }
+            else
+            {
+                std::cout << "Usage: cat <file> or cat >> <file> <input>\n";
+            }
         }
         else
         {
