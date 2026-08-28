@@ -65,7 +65,7 @@ void run_cat(const std::string& arg) {
 
 // pwd function for later use
 std::string run_pwd() {
-    return fs::current_path();
+    return fs::current_path().string();
 }
 
 int main() {
