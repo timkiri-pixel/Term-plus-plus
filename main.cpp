@@ -15,9 +15,14 @@ void sayHello(std::string& name) {
 
 // define the run_ls function for later use
 void run_ls(const std::string& path = ".") {
-    for (const auto& entry : fs::directory_iterator(path)) {
-        std::cout << entry.path().filename().string() << "\n";
+    try {
+        for (const auto& entry : fs::directory_iterator(path)) {
+            std::cout << entry.path().filename().string() << "\n";
+        }
+    } catch (const fs::filesystem_error& e) {
+        std::cout << "ERROR: " << e.what() << "\n";
     }
+        
 }
 
 // mkdir function for later use
@@ -63,19 +68,26 @@ void run_cat(const std::string& arg) {
     }
 }
 
-void run_catAppend(const std::string& arg) {
+void run_catAppend(const std::string& arg, const std::string& delimiter) {
     std::ofstream file(arg, std::ios::app);
+
+    if (!file) {
+        std::cout << "Could not open file.\n";
+        return;
+    }
 
     std::string line;
 
     while (std::getline(std::cin, line)) {
+        
+        if (line == delimiter) {
+            break;
+        }
+        
         file << line << '\n';
     }
 
     std::cin.clear();
-    //diagnosing
-    std::cout << "APPEND FINISHED\n";
-    std::cout << "relaunch needed (please)\n";
 }
 
 // pwd function for later use
@@ -114,10 +126,12 @@ int main() {
         std::string cmd;
         std::string op;
         std::string arg;
+        std::string delimiter;
 
         input >> cmd;
         input >> op;
         input >> arg;
+        input >> delimiter;
 
         if (arg.empty()) {
             arg = op;
@@ -203,7 +217,11 @@ int main() {
             }
             else if (op == ">>")
             {
-                run_catAppend(arg);
+                if (delimiter.size() > 2 && delimiter[0] ==  '<' && delimiter[1] == '<') {
+                    std::string endWord = delimiter.substr(2);
+
+                    run_catAppend(arg, endWord);
+                }
             }
             else
             {
