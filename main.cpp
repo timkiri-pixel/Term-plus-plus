@@ -71,7 +71,7 @@ std::string run_pwd() {
 int main() {
     
     // Optional welcoming
-    std::cout << "Welcome to Term++ v0.0.2 :D\n";
+    std::cout << "Welcome to Term++ v0.0.4 :D\n";
 
     // the main loop that runs the terminal
     while (true)
@@ -118,7 +118,7 @@ int main() {
         } 
         else if (cmd == "version")
         {
-            std::cout << "v0.0.2\n";
+            std::cout << "v0.0.4\n";
         }
         else if (cmd == "hello")
         {
@@ -161,7 +161,7 @@ int main() {
         }
         else if (cmd == "pwd")
         {
-            run_pwd();
+            std::cout << run_pwd() << '\n';
         }
         else if (cmd == "cd")
         {
