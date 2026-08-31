@@ -90,5 +90,5 @@ void run_catAppend(const std::string& arg, const std::string& delimiter) {
 }
 
 std::string run_pwd() {
-    return fs::current_path();
+    return fs::current_path().string();
 }

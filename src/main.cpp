@@ -63,7 +63,7 @@ int main() {
             std::cout << "pwd - print the current directory\n";
             std::cout << "cd - change directory\n";
             std::cout << "touch - make a file\n";
-            std::cout << "cat - output the inside of a file\n";
+            std::cout << "cat - output the inside of a file or input something into the file\n";
         } 
         else if (cmd == "version")
         {
