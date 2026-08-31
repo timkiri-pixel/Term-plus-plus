@@ -29,7 +29,7 @@ void run_mkdir(const std::string& arg) {
     try {
         fs::create_directory(arg);
     } catch (fs::filesystem_error& e) {
-        std::cout << "ERROR: dir already exists.\n";
+        std::cout << "ERROR: " << e.what() << '\n';
     }
 }
 
@@ -38,7 +38,7 @@ void run_cd(const std::string& arg) {
     try {
         fs::current_path(arg);
     } catch (fs::filesystem_error& e) {
-        std::cout << "ERROR: nonexistent dir.\n";
+        std::cout << "ERROR: " << e.what() << '\n';
     }
 }
 
