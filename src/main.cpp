@@ -1,3 +1,5 @@
+#include "commands.hpp"
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -5,73 +7,10 @@
 #include <sstream>
 #include <fstream>
 
-// give std::filesystem a nickname for easier access
-namespace fs = std::filesystem;
-
-// define the sayHello function for later use
-void sayHello(std::string& name) {
-    std::cout << "Hello, " << name << "!" << std::endl;
-}
-
-// define the run_ls function for later use
-void run_ls(const std::string& path = ".") {
-    for (const auto& entry : fs::directory_iterator(path)) {
-        std::cout << entry.path().filename().string() << "\n";
-    }
-}
-
-// mkdir function for later use
-void run_mkdir(const std::string& arg) {
-    try {
-        fs::create_directory(arg);
-    } catch (fs::filesystem_error& e) {
-        std::cout << "ERROR: dir already exists.\n";
-    }
-}
-
-// cd function for later use
-void run_cd(const std::string& arg) {
-    try {
-        fs::current_path(arg);
-    } catch (fs::filesystem_error& e) {
-        std::cout << "ERROR: nonexistent dir.\n";
-    }
-}
-
-// touch function for later use
-void run_touch(const std::string& arg) {
-    std::ofstream file(arg);
-
-    if (!file) {
-        std::cout << "Could not create file.\n";
-    }
-}
-
-// cat function for later use
-void run_cat(const std::string& arg) {
-    std::ifstream file(arg);
-
-    if (!file) {
-        std::cout << "File not found\n";
-        return;
-    }
-
-    std::string line;
-
-    while(std::getline(file, line)) {
-        std::cout << line << "\n";
-    }
-}
-
-// pwd function for later use
-std::string run_pwd() {
-    return fs::current_path().string();
-}
-
 int main() {
     
     // Optional welcoming
-    std::cout << "Welcome to Term++ v0.0.4 :D\n";
+    std::cout << "Welcome to Term++ v0.0.5 :D\n";
 
     // the main loop that runs the terminal
     while (true)
@@ -89,16 +28,27 @@ int main() {
         std::cout << run_pwd() << " ++> ";
 
         // start reading input from userInput
-        std::getline(std::cin, userInput);
+        if (!std::getline(std::cin, userInput)) {
+            break;
+        }
 
         //iss implementation for cmd and arg reading
         std::istringstream input(userInput);
 
         std::string cmd;
         std::string arg;
+        std::string op;
+        std::string delimiter;
 
         input >> cmd;
+        input >> op;
         input >> arg;
+        input >> delimiter;
+
+        if (arg.empty()) {
+            arg = op;
+            op.clear();
+        }
 
         // if-statement block
         if (cmd == "help")
@@ -114,11 +64,11 @@ int main() {
             std::cout << "pwd - print the current directory\n";
             std::cout << "cd - change directory\n";
             std::cout << "touch - make a file\n";
-            std::cout << "cat - output the inside of a file\n";
+            std::cout << "cat - output the inside of a file or input something into the file\n";
         } 
         else if (cmd == "version")
         {
-            std::cout << "v0.0.4\n";
+            std::cout << "v0.0.5\n";
         }
         else if (cmd == "hello")
         {
@@ -173,7 +123,23 @@ int main() {
         }
         else if (cmd == "cat")
         {
-            run_cat(arg);
+            
+            if (op.empty())
+            {
+                run_cat(arg);
+            }
+            else if (op == ">>")
+            {
+                if (delimiter.size() > 2 && delimiter[0] == '<' && delimiter[1] == '<') {
+                    std::string endWord = delimiter.substr(2);
+
+                    run_catAppend(arg, endWord);
+                }
+            }
+            else
+            {
+                std::cout << "Usage: cat <file> or cat >> <file> <input>\n";
+            }
         }
         else
         {
