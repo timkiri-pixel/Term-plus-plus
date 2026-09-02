@@ -1,10 +1,11 @@
+#include "commands.hpp"
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <filesystem>
 #include <sstream>
 #include <fstream>
-#include "commands.hpp"
 
 int main() {
     
