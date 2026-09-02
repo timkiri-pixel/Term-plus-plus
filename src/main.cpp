@@ -10,7 +10,7 @@
 int main() {
     
     // Optional welcoming
-    std::cout << "Welcome to Term++ v0.0.4 :D (experimental branch)\n";
+    std::cout << "Welcome to Term++ v0.0.5 :D (experimental branch)\n";
 
     // the main loop that runs the terminal
     while (true)
@@ -68,7 +68,7 @@ int main() {
         } 
         else if (cmd == "version")
         {
-            std::cout << "v0.0.4 (experimental branch)\n";
+            std::cout << "v0.0.5 (experimental branch)\n";
         }
         else if (cmd == "hello")
         {
