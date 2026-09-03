@@ -35,7 +35,7 @@ void run_cd(const std::string& arg) {
     try {
         fs::current_path(arg);
     } catch (fs::filesystem_error& e) {
-        std::cout << "ERROR: nonexistent dir.\n";
+        std::cout << "ERROR: " << e.what() << '\n';
     }
 }
 
@@ -84,6 +84,19 @@ void run_catAppend(const std::string& arg, const std::string& delimiter) {
     }
 
     std::cin.clear();
+}
+
+void run_rm(const std::string& arg) {
+    try {
+        if (!fs::exists(arg)) {
+            std::cout << "ERROR: Directory/File doesn't exist\n";
+            return;
+        }
+        
+        fs::remove(arg);
+    } catch (fs::filesystem_error& e) {
+        std::cout << "ERROR: " << e.what() << '\n';
+    }
 }
 
 // pwd function for later use

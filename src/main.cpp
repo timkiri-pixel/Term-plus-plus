@@ -135,6 +135,14 @@ int main() {
                 std::cout << "Usage: cat <file> or cat >> <file> <input>\n";
             }
         }
+        else if (cmd == "rm")
+        {
+            if (arg.empty()) {
+                std::cout << "Usage: rm <dir/file>\n";
+            } else {
+                run_rm(arg);
+            }
+        }
         else
         {
             std::cout << "Unknown command: " << cmd << std::endl;
