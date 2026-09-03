@@ -16,13 +16,10 @@ int main() {
     while (true)
     {
         // declare the userInput variable for storing user's input; declare the name variable for storing the user's name
-        std::string name;
         std::string userInput;
 
         // declare the folderName variable for storing the new folder's name
         std::string folderName;
-
-        std::string path;
 
         // the prompt
         std::cout << run_pwd() << " ++> ";
@@ -122,7 +119,7 @@ int main() {
             run_touch(arg);
         }
         else if (cmd == "cat")
-        {
+        { 
             
             if (op.empty())
             {
