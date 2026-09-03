@@ -1,3 +1,8 @@
+<p align="center">
+    <img src="assets/logo.png alt="Term++ logo" width="300">
+</p>
+
+
 # Term++
 
 Term++ is a small terminal/shell project written in C++.
