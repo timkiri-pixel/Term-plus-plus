@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/logo.png alt="Term++ logo" width="300">
+    <img src="assets/logo.png" alt="Term++ logo" width="300">
 </p>
 
 
