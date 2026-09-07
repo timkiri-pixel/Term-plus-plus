@@ -4,7 +4,6 @@
 #include <string>
 #include <cstdlib>
 #include <filesystem>
-#include <sstream>
 #include <fstream>
 
 namespace fs = std::filesystem;
@@ -21,7 +20,7 @@ void run_ls(const std::string& path) {
     } catch (const fs::filesystem_error& e) {
         std::cout << "ERROR: " << e.what() << "\n";
     }
-        
+
 }
 
 
@@ -78,11 +77,11 @@ void run_catAppend(const std::string& arg, const std::string& delimiter) {
     std::string line;
 
     while (std::getline(std::cin, line)) {
-        
+
         if (line == delimiter) {
             break;
         }
-        
+
         file << line << '\n';
     }
 
