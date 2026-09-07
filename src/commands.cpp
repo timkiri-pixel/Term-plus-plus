@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include <sstream>
 #include <istream>
 #include <fstream>
 
@@ -75,7 +74,7 @@ void run_catAppend(const std::string& arg, const std::string& delimiter) {
     std::string line;
 
     while (std::getline(std::cin, line)) {
-        
+
         if (line == delimiter) {
             break;
         }
@@ -92,7 +91,7 @@ void run_rm(const std::string& arg) {
             std::cout << "ERROR: Directory/File doesn't exist\n";
             return;
         }
-        
+
         fs::remove(arg);
     } catch (fs::filesystem_error& e) {
         std::cout << "ERROR: " << e.what() << '\n';

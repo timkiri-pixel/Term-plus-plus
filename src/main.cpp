@@ -3,12 +3,10 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <filesystem>
 #include <sstream>
-#include <fstream>
 
 int main() {
-    
+
     // Optional welcoming
     std::cout << "Welcome to Term++ v0.0.5 :D\n";
 
@@ -59,7 +57,7 @@ int main() {
             std::cout << "cd - change directory\n";
             std::cout << "touch - make a file\n";
             std::cout << "cat - output the inside of a file or input something into the file\n";
-        } 
+        }
         else if (cmd == "version")
         {
             std::cout << "v0.0.5\n";
@@ -70,7 +68,7 @@ int main() {
             {
                 std::cout << "Usage: hello <name>\n";
             }
-            else 
+            else
             {
                 sayHello(arg);
             }
@@ -116,8 +114,8 @@ int main() {
             run_touch(arg);
         }
         else if (cmd == "cat")
-        { 
-            
+        {
+
             if (op.empty())
             {
                 run_cat(arg);
