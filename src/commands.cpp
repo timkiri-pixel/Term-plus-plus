@@ -88,6 +88,26 @@ void run_catAppend(const std::string& arg, const std::string& delimiter) {
     std::cin.clear();
 }
 
+void run_rm(const std::string& arg, bool recursive, bool force) {
+    try {
+        if (!fs::exists(arg)) {
+            if (!force) {
+                std::cout << "ERROR: File not found.\n";
+            }
+            return;
+        }
+
+        if (recursive) {
+            fs::remove_all(arg);
+        } else {
+            fs::remove(arg);
+        }
+    } catch (fs::filesystem_error& e) {
+        std::cout << "ERROR: " << e.what() << "\n";
+    }
+}
+
+
 std::string run_pwd() {
     return fs::current_path().string();
 }

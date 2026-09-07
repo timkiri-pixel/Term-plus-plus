@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include <sstream>
+#include <vector>
 
 int main() {
 
@@ -33,23 +34,30 @@ int main() {
         //iss implementation for cmd and arg reading
         std::istringstream input(userInput);
 
-        std::string cmd;
-        std::string op;
-        std::string arg;
-        std::string delimiter;
+        //std::string cmd;
+        //std::string op;
+        //std::string arg;
+        //std::string delimiter;
 
-        input >> cmd;
-        input >> op;
-        input >> arg;
-        input >> delimiter;
+        //input >> cmd;
+        //input >> op;
+        //input >> arg;
+        //input >> delimiter;
 
-        if (arg.empty()) {
-            arg = op;
-            op.clear();
+        //if (arg.empty()) {
+        //    arg = op;
+        //    op.clear();
+        //}
+
+        std::vector<std::string> tokens;
+        std::string token;
+
+        while (input >> token) {
+            tokens.push_back(token);
         }
 
         // if-statement block
-        if (cmd == "help")
+        if (tokens[0] == "help")
         {
             std::cout << "-- Help Menu -- \n";
             std::cout << "version - display current build version of this project\n";
@@ -64,27 +72,27 @@ int main() {
             std::cout << "touch - make a file\n";
             std::cout << "cat - output the inside of a file or input something into the file\n";
         }
-        else if (cmd == "version")
+        else if (tokens[0] == "version")
         {
             std::cout << "v0.0.5 (experimental branch)\n";
         }
-        else if (cmd == "hello")
+        else if (tokens[0] == "hello")
         {
-            if (arg.empty())
+            if (tokens.size() == 1)
             {
                 std::cout << "Usage: hello <name>\n";
             }
             else
             {
-                sayHello(arg);
+                sayHello(tokens[1]);
             }
         }
-        else if (cmd == "exit")
+        else if (tokens[0] == "exit")
         {
             std::cout << "Exiting... (return 0)\n";
             return 0;
         }
-        else if (cmd == "clear")
+        else if (tokens[0] == "clear")
         {
             #ifdef _WIN32
                 std::system("cls");
@@ -92,55 +100,95 @@ int main() {
                 std::system("clear");
             #endif
         }
-        else if (cmd == "ls")
+        else if (tokens[0] == "ls")
         {
-            if (arg.empty())
+            if (tokens.size() < 2)
             {
                 run_ls(".");
             }
             else
             {
-                run_ls(arg);
+                run_ls(tokens[1]);
             }
         }
-        else if (cmd == "mkdir")
+        else if (tokens[0] == "mkdir")
         {
-            run_mkdir(arg);
+            run_mkdir(tokens[1]);
         }
-        else if (cmd == "pwd")
+        else if (tokens[0] == "pwd")
         {
             std::cout << run_pwd() << '\n';
         }
-        else if (cmd == "cd")
+        else if (tokens[0] == "cd")
         {
-            run_cd(arg);
-        }
-        else if (cmd == "touch")
-        {
-            run_touch(arg);
-        }
-        else if (cmd == "cat")
-        {
-            if (op.empty())
+            if (tokens.size() == 2)
             {
-                run_cat(arg);
+                run_cd(tokens[1]);
             }
-            else if (op == ">>")
+            else
             {
-                if (delimiter.size() > 2 && delimiter[0] ==  '<' && delimiter[1] == '<') {
-                    std::string endWord = delimiter.substr(2);
+                std::cout << "Usage: cd <directory>\n";
+            }
+        }
+        else if (tokens[0] == "touch")
+        {
+            run_touch(tokens[1]);
+        }
+        else if (tokens[0] == "cat")
+        {
+            if (tokens.size() == 2)
+            {
+                run_cat(tokens[1]);
+            }
+            else if (tokens.size() == 4 && tokens[1] == ">>")
+            {
+                if (tokens[3].size() > 2 &&
+                    tokens[3][0] == '<' &&
+                    tokens[3][1] == '<')
+                {
+                    std::string endWord = tokens[3].substr(2);
 
-                    run_catAppend(arg, endWord);
+                    run_catAppend(tokens[2], endWord);
+                }
+                else
+                {
+                    std::cout << "Usage: cat >> <file> <<EOF\n";
                 }
             }
             else
             {
-                std::cout << "Usage: cat <file> or cat >> <file> <input>\n";
+                std::cout << "Usage: cat <file> or cat >> <file> <<EOF\n";
             }
         }
-        else
+        else if (tokens[0] == "rm")
         {
-            std::cout << "Unknown command: " << cmd << std::endl;
+            bool force = false;
+            bool recursive = false;
+
+            if (tokens.size() < 2) {
+                std::cout << "Usage: rm [-r | -f | -rf] <file>\n";
+            }
+            else if (tokens.size() == 2) {
+                run_rm(tokens[1], recursive, force);
+            }
+            else if (tokens[1] == "-r")
+            {
+                recursive = true;
+                run_rm(tokens[2], recursive, force);
+            }
+            else if (tokens[1] == "-f") {
+                force = true;
+                run_rm(tokens[2], recursive, force);
+            }
+            else if (tokens[1] == "-rf") {
+                recursive = true;
+                force = true;
+                run_rm(tokens[2], recursive, force);
+            }
+            else
+            {
+                std::cout << "Unknown command: " << tokens[0] << std::endl;
+            }
         }
     }
 }
