@@ -1,4 +1,5 @@
 #include "commands.hpp"
+#include "constants.hpp"
 
 #include <iostream>
 #include <string>
@@ -9,7 +10,7 @@
 int main() {
 
     // Optional welcoming
-    std::cout << "Welcome to Term++ v0.0.5 :D (experimental branch)\n";
+    std::cout << "Welcome to Term++ v" << VERSION << " :D (experimental branch)\n";
 
     // the main loop that runs the terminal
     while (true)
@@ -56,25 +57,29 @@ int main() {
             tokens.push_back(token);
         }
 
+        if (tokens.empty()) continue;
+
         // if-statement block
         if (tokens[0] == "help")
         {
-            std::cout << "-- Help Menu -- \n";
-            std::cout << "version - display current build version of this project\n";
+            std::cout << "-- Help Menu --\n";
+            std::cout << "version - display the current Term++ version\n";
             std::cout << "help - display this help menu\n";
-            std::cout << "hello - get greeted with your desired name\n";
-            std::cout << "exit - exit the terminal\n";
+            std::cout << "hello <name> - greet someone\n";
+            std::cout << "exit - exit Term++\n";
             std::cout << "clear - clear the terminal\n";
-            std::cout << "ls - list all of the available directories and the content of them\n";
-            std::cout << "mkdir - make a directory\n";
+            std::cout << "ls [directory] - list a directory's contents\n";
+            std::cout << "mkdir <directory> - create a directory\n";
             std::cout << "pwd - print the current directory\n";
-            std::cout << "cd - change directory\n";
-            std::cout << "touch - make a file\n";
-            std::cout << "cat - output the inside of a file or input something into the file\n";
+            std::cout << "cd <directory> - change the current directory\n";
+            std::cout << "touch <file> - create a file\n";
+            std::cout << "cat <file> - display a file's contents\n";
+            std::cout << "cat >> <file> <<EOF - add lines until EOF is entered\n";
+            std::cout << "rm [-r | -f | -rf] <file> - remove a file or directory\n";
         }
         else if (tokens[0] == "version")
         {
-            std::cout << "v0.0.5 (experimental branch)\n";
+            std::cout << "v" << VERSION << " (experimental branch)\n";
         }
         else if (tokens[0] == "hello")
         {
@@ -113,7 +118,14 @@ int main() {
         }
         else if (tokens[0] == "mkdir")
         {
-            run_mkdir(tokens[1]);
+            if (tokens.size() == 2)
+            {
+                run_mkdir(tokens[1]);
+            }
+            else
+            {
+                std::cout << "Usage: mkdir <directory>\n";
+            }
         }
         else if (tokens[0] == "pwd")
         {
