@@ -197,10 +197,10 @@ int main() {
                 force = true;
                 run_rm(tokens[2], recursive, force);
             }
-            else
-            {
-                std::cout << "Unknown command: " << tokens[0] << std::endl;
-            }
+        }
+        else
+        {
+            std::cout << "Unknown command: " << tokens[0] << std::endl;
         }
     }
 }
