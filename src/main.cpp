@@ -7,6 +7,8 @@
 #include <sstream>
 #include <vector>
 
+void startGame();
+
 int main() {
 
     // Optional welcoming
@@ -76,6 +78,7 @@ int main() {
             std::cout << "cat <file> - display a file's contents\n";
             std::cout << "cat >> <file> <<EOF - add lines until EOF is entered\n";
             std::cout << "rm [-r | -f | -rf] <file> - remove a file or directory\n";
+            std::cout << "rpg - start an RPG game\n";
         }
         else if (tokens[0] == "version")
         {
@@ -198,6 +201,11 @@ int main() {
                 run_rm(tokens[2], recursive, force);
             }
         }
+        else if (tokens[0] == "rpg")
+        {
+            startGame();
+        }
+        
         else
         {
             std::cout << "Unknown command: " << tokens[0] << std::endl;
