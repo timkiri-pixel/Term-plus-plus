@@ -3,14 +3,13 @@ CMakeFiles/TermPlusPlus.dir/src/main.cpp.o: \
  /usr/include/stdc-predef.h \
  /home/moon/Documents/Term-plus-plus/src/commands.hpp \
  /usr/include/c++/16/string /usr/include/c++/16/bits/requires_hosted.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/c++config.h \
- /usr/include/bits/wordsize.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/os_defines.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
- /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
- /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
- /usr/include/gnu/stubs-64.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/cpu_defines.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h \
  /usr/include/c++/16/pstl/pstl_config.h \
  /usr/include/c++/16/bits/stringfwd.h \
  /usr/include/c++/16/bits/memoryfwd.h /usr/include/c++/16/bits/version.h \
@@ -18,15 +17,15 @@ CMakeFiles/TermPlusPlus.dir/src/main.cpp.o: \
  /usr/include/c++/16/bits/postypes.h /usr/include/c++/16/cwchar \
  /usr/include/wchar.h /usr/include/bits/libc-header-start.h \
  /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
- /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
- /usr/lib/gcc/x86_64-redhat-linux/16/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
  /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
  /usr/include/bits/types/mbstate_t.h \
  /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/locale_t.h \
  /usr/include/bits/types/__locale_t.h /usr/include/c++/16/type_traits \
  /usr/include/c++/16/bits/allocator.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/c++allocator.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h \
  /usr/include/c++/16/bits/new_allocator.h /usr/include/c++/16/new \
  /usr/include/c++/16/bits/exception.h \
  /usr/include/c++/16/bits/new_except.h \
@@ -34,7 +33,7 @@ CMakeFiles/TermPlusPlus.dir/src/main.cpp.o: \
  /usr/include/c++/16/bits/new_throw.h /usr/include/c++/16/bits/move.h \
  /usr/include/c++/16/bits/cpp_type_traits.h \
  /usr/include/c++/16/bits/localefwd.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/c++locale.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++locale.h \
  /usr/include/c++/16/clocale /usr/include/locale.h \
  /usr/include/bits/locale.h /usr/include/c++/16/iosfwd \
  /usr/include/c++/16/cctype /usr/include/ctype.h \
@@ -104,8 +103,8 @@ CMakeFiles/TermPlusPlus.dir/src/main.cpp.o: \
  /usr/include/c++/16/bits/cxxabi_init_exception.h \
  /usr/include/c++/16/typeinfo /usr/include/c++/16/bits/nested_exception.h \
  /usr/include/c++/16/bits/ios_base.h /usr/include/c++/16/ext/atomicity.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/gthr.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/gthr-default.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h \
  /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/linux/sched/types.h /usr/include/linux/types.h \
  /usr/include/asm/types.h /usr/include/asm-generic/types.h \
@@ -119,22 +118,22 @@ CMakeFiles/TermPlusPlus.dir/src/main.cpp.o: \
  /usr/include/bits/types/struct_itimerspec.h /usr/include/bits/setjmp.h \
  /usr/include/bits/types/struct___jmp_buf_tag.h \
  /usr/include/bits/pthread_stack_min-dynamic.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/atomic_word.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/atomic_word.h \
  /usr/include/sys/single_threaded.h \
  /usr/include/c++/16/bits/locale_classes.h \
  /usr/include/c++/16/bits/functexcept.h \
  /usr/include/c++/16/bits/locale_classes.tcc \
  /usr/include/c++/16/system_error \
- /usr/include/c++/16/x86_64-redhat-linux/bits/error_constants.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/error_constants.h \
  /usr/include/c++/16/stdexcept \
  /usr/include/c++/16/bits/stdexcept_except.h \
  /usr/include/c++/16/streambuf /usr/include/c++/16/bits/streambuf.tcc \
  /usr/include/c++/16/bits/basic_ios.h \
  /usr/include/c++/16/bits/locale_facets.h /usr/include/c++/16/cwctype \
  /usr/include/wctype.h /usr/include/bits/wctype-wchar.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/ctype_base.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_base.h \
  /usr/include/c++/16/bits/streambuf_iterator.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/ctype_inline.h \
+ /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_inline.h \
  /usr/include/c++/16/bits/locale_facets.tcc \
  /usr/include/c++/16/bits/basic_ios.tcc \
  /usr/include/c++/16/bits/ostream_print.h \
