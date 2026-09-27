@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/TermPlusPlus.dir/link.d CMakeFiles/TermPlusPlus.dir/src/main.cpp.o CMakeFiles/TermPlusPlus.dir/src/commands.cpp.o CMakeFiles/TermPlusPlus.dir/src/rpg.cpp.o -o TermPlusPlus

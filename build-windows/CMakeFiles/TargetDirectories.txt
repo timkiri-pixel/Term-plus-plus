@@ -1,0 +1,3 @@
+/home/moon/Documents/Term-plus-plus/build-windows/CMakeFiles/TermPlusPlus.dir
+/home/moon/Documents/Term-plus-plus/build-windows/CMakeFiles/edit_cache.dir
+/home/moon/Documents/Term-plus-plus/build-windows/CMakeFiles/rebuild_cache.dir
