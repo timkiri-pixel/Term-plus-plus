@@ -85,15 +85,21 @@ void run_catAppend(const std::string& arg, const std::string& delimiter) {
     std::cin.clear();
 }
 
-void run_rm(const std::string& arg) {
+void run_rm(const std::string& arg, bool recursive, bool force) {
     try {
         if (!fs::exists(arg)) {
-            std::cout << "ERROR: Directory/File doesn't exist\n";
+            if (!force) {
+                std::cout << "ERROR: File not found\n";
+            }
             return;
         }
 
-        fs::remove(arg);
-    } catch (fs::filesystem_error& e) {
+        if (recursive) {
+            fs::remove_all(arg);
+        } else {
+            fs::remove(arg);
+        }
+    } catch (fs::filesystem_error &e) {
         std::cout << "ERROR: " << e.what() << '\n';
     }
 }

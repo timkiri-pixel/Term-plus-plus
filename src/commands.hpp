@@ -9,5 +9,6 @@ void run_cd(const std::string& arg);
 void run_touch(const std::string& arg);
 void run_cat(const std::string& arg);
 void run_catAppend(const std::string& arg, const std::string& delimiter);
-void run_rm(const std::string& arg);
+void run_rm(const std::string& arg, bool recursive, bool force);
+void startGame();
 std::string run_pwd();
